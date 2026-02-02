@@ -1,49 +1,67 @@
-/* Load Tailwind v4 */
 @import "tailwindcss";
 
-
-
+/* 1. Theme Variables - Use these via var(--name) or text-name */
 @theme {
   --color-light-white-100: rgba(59, 60, 152, 0.03);
   --color-nav-border: #e5e7eb;
+  
+  /* Adding Inter font if you have the package installed */
+  --font-inter: "Inter", sans-serif;
 }
 
+/* 2. Base Styles */
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-/* Base styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  body {
+    @apply font-sans antialiased;
+    font-family: var(--font-inter);
+  }
 }
 
-body {
-  font-family: "Inter", sans-serif;
+/* 3. Custom Utilities - Optimized for Tailwind v4 */
+@utility flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Utility classes */
-
-@layer utilities {
-.flexCenter {
-  @apply flex justify-center items-center;
+@utility flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.flexBetween {
-  @apply flex justify-between items-center;
+/* Changed from flexStart to flex-start to match your Home.tsx code */
+@utility flex-start {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
-.flexStart {
-  @apply flex items-center justify-start;
+@utility text-small {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
 }
 
-.text-small {
-  @apply text-sm font-medium;
-}
-
-.paddings {
+@utility paddings {
   @apply lg:px-20 py-6 px-5;
 }
+
+@utility modal-head-text {
+  @apply md:text-5xl text-3xl font-extrabold text-left max-w-5xl w-full;
 }
-/* Scrollbar */
+
+@utility no-result-text {
+  @apply w-full text-center my-10 px-2;
+}
+
+/* 4. Custom Scrollbar (Standard CSS works fine here) */
 ::-webkit-scrollbar {
   width: 5px;
   height: 4px;
@@ -54,13 +72,6 @@ body {
   border-radius: 12px;
 }
 
-/* Everything else below is OK */
-.modal-head-text {
-  @apply md:text-5xl text-3xl font-extrabold text-left max-w-5xl w-full;
+.navbar {
+    @apply py-5 px-8 border-b border-nav-border gap-4;
 }
-
-.no-result-text {
-  @apply w-full text-center my-10 px-2;
-}
-
-/* …rest of your classes are valid */
