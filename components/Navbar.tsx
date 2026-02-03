@@ -1,7 +1,11 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { NavLinks } from '@/constants'
+import { link } from 'fs'
+import AuthProviders from './AuthProviders'
 
 const Navbar = () => {
+  const session = {};
   return (
     <nav className='flexBetween navbar'>
       <div className='flex-1 flexStart gap-10'>
@@ -12,10 +16,31 @@ const Navbar = () => {
             height={43}
             alt='Flexibble'
               />
-              <ul className='xl:flex hidden text-small gap-7'>
+           </Link>
 
-              </ul>
-          </Link>
+            <ul className='xl:flex hidden text-small gap-7'>
+              {NavLinks.map((link) => (
+               <li key={link.key}>
+                <Link href={link.href} >
+                  {link.text}
+                </Link>
+               </li>
+             ))}
+         </ul>
+      </div>
+
+      <div className='flexCenter gap-4'>
+        {session ? (
+          <>
+          <span> UserPhoto </span>
+
+            <Link href="/create-project" className='ml-2'>
+               Share Work
+            </Link>
+          </>
+        ): (
+          <AuthProviders />
+        )}
       </div>
     </nav>
   )

@@ -40,7 +40,7 @@
 @utility flex-start {
   display: flex;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
 }
 
 @utility text-small {
@@ -61,6 +61,11 @@
   @apply w-full text-center my-10 px-2;
 }
 
+@utility navbar {
+  @apply flex-between py-5 px-8 border-b border-b-nav-border gap-4;
+}
+
+
 /* 4. Custom Scrollbar (Standard CSS works fine here) */
 ::-webkit-scrollbar {
   width: 5px;
@@ -72,6 +77,3 @@
   border-radius: 12px;
 }
 
-.navbar {
-    @apply py-5 px-8 border-b border-nav-border gap-4;
-}
